@@ -1,9 +1,9 @@
 class Question
   def initialize
     # Randomly generate 2 numbers between 1 and 20
-    rng = Random.new
-    @x = rng(1..20)
-    @y = rng(1..20)
+    prng = Random.new
+    @x = prng.rand(1..20)
+    @y = prng.rand(1..20)
   end
 
   # Returns a string containing the question
