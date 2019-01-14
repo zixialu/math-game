@@ -9,9 +9,9 @@ class Game
   # Start the game loop
   def start
     # Game loop
-    while p1.alive? && p2.alive? do
+    while @p1.alive? && @p2.alive? do
       # Ask a math question
-      ask
+      ask(current_player)
 
       # Alternate turns
       @is_p1_turn = !@is_p1_turn
@@ -24,7 +24,7 @@ class Game
   end
 
   def current_player
-    @is_p1_turn ? p1 : p2
+    @is_p1_turn ? @p1 : @p2
   end
 
   def ask(player)
