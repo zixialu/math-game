@@ -10,6 +10,8 @@ class Game
   def start
     # Game loop
     while @p1.alive? && @p2.alive? do
+      puts "----- New Turn -----"
+
       # Ask a math question
       ask(current_player)
 
@@ -30,29 +32,25 @@ class Game
   def ask(player)
     question = Question.new
 
-    puts "#{ current_player.name }: #{ question.query }"
+    puts "#{ player.name }: #{ question.query }"
     print "> "
 
     handle_answer(player, question)
   end
 
   def handle_answer(player, question)
-    answer = gets.chomp
-    if question.correct?(answer)
-      player.receive_praise
-    else
-      player.suffer_consequences
-    end
+    answer = gets.chomp.to_i
+    question.correct?(answer) ? player.receive_praise : player.suffer_consequences
   end
 
   def print_scores
-    puts "P1: #{ p1.lives }/3 vs P2: #{ p2.lives }/3"
+    puts "\nP1: #{ @p1.lives }/3 vs P2: #{ @p2.lives }/3"
   end
 
   def game_over
     # Determine the winner and their score by whose turn it is after the
     # game-ending turn
-    puts "#{ current_player.name } wins with a score of #{ current_player.lives }/3"
+    puts "\n#{ current_player.name } wins with a score of #{ current_player.lives }/3"
     puts "----- GAME OVER -----"
   end
 end
