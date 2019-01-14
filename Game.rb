@@ -25,6 +25,8 @@ class Game
     game_over
   end
 
+  private
+
   def current_player
     @is_p1_turn ? @p1 : @p2
   end
